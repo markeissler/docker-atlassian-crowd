@@ -123,7 +123,7 @@ fi
 #
 if [ -f "${CROWD_HOME}/crowd.properties" ]; then
   sed --in-place \
-    -e 's/\(crowd.server.url=http[^s]*\\:\/\/\)\([0-9A-Za-z.]*\)\(\\:[0-9]*\)\{0,1\}/\1localhost\\:8080/' \
+    -e 's/\(crowd.server.url=http\)[s]*\(\\:\/\/\)\([0-9A-Za-z.]*\)\(\\:[0-9]*\)\{0,1\}/\1\2localhost\\:8080/' \
     "${CROWD_HOME}/crowd.properties"
 fi
 
