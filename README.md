@@ -9,6 +9,10 @@ open issues if you find bugs.
 
 ## Overview
 
+This revision of __docker-atlassian-crowd__ will install:
+
+[Crowd 2.11.2](https://confluence.atlassian.com/crowd/crowd-2-11-release-notes-867183140.html)
+
 ## Installation
 
 This application is ready to launch on a Docker host:
@@ -96,6 +100,12 @@ Crowd configuration information among replicated instances.
 ## Troubleshooting
 
 For general troubleshooting information check the [Troubleshoot](troubleshoot.md) document.
+
+## Upstream Release Notes
+
+Release notes for all versions of Crowd can be viewed online:
+
+[Crowd Release Notes](https://confluence.atlassian.com/crowd/crowd-release-notes-199094.html)
 
 ## Authors
 
