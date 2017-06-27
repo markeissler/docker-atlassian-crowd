@@ -40,6 +40,15 @@ described in the [Data Persistence](#data-persistence) section above. NFS suppor
 host supports NFS; if deploying to a [Docker swarm](https://docs.docker.com/engine/swarm/) a potential __boot2docker.iso__
 candidate that supports NFS is the [boot2docker-nfs.iso](https://github.com/markeissler/boot2docker-nfs).
 
+Certain Crowd directories are moved out of the application configuration directory and into an ephemeral runtime storage
+area to prevent data corruption startup failures. Specfically, cache directories are moved so that clean re-starts
+are possible; often, when an instance dies Tomcat will not be shutdown cleanly and data corruption is likely to occur
+with regard to the _felix_ plugin cache).
+
+| Directory | Purpose                                                        |
+|:----------|:---------------------------------------------------------------|
+| /var/atlassian/crowd_runtime | runtime storage for caches and indexes      |
+
 ### SSL Support
 
 You can enable SSL by simply copying a PKCS12 format certificate (`certificate.p12`) into the `JIRA_HOME` directory
@@ -75,6 +84,14 @@ certificate_8444.p12
 With the above file present, the server will be reconfigured to listen for SSL connections on port 8444.
 
 > Remember: If you update the `certificate` file, you will need to restart the container.
+
+## Docker Swarm Support
+
+While __docker-atlassian-crowd__ does not support multi-node clustering it does support deployment to a cluster
+with a failover configuration (where only a single Crowd instance is active at any time).
+
+This configuration requires that [Data Persistence over NFS](#data-persistence-nfs) has been configured to share
+Crowd configuration information among replicated instances.
 
 ## Troubleshooting
 
