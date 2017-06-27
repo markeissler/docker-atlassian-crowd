@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# check if the `server.xml` file has been changed since the creation of this
-# Docker image. If the file has been changed the entrypoint script will not
-# perform modifications to the configuration file.
+# check if the `server.xml` file has been changed since the creation of this Docker image. If the file has been changed
+# the entrypoint script will not perform modifications to the configuration file.
 if [ "$(stat --format "%Y" "${CROWD_INSTALL}/apache-tomcat/conf/server.xml")" -eq "0" ]; then
   if [ -n "${X_PROXY_NAME}" ]; then
     xmlstarlet ed --inplace --pf --ps --insert '//Connector[@port="8080"]' --type "attr" --name "proxyName" --value "${X_PROXY_NAME}" "${CROWD_INSTALL}/apache-tomcat/conf/server.xml"
@@ -85,7 +84,6 @@ if [ -f "${CERTIFICATE}" ] || [ -f "${CERTIFICATE}.p12" ]; then
     # update crowd.server.url here with existing hostname, fix it to localhost later
     sed --in-place \
       -e 's/\(application.login.url=http\)[s]*\(\\:\/\/[0-9A-Za-z.]*\)\(\\:[0-9]*\)\{0,1\}/\1s\2\\:8443/' \
-      -e 's/\(crowd.server.url=http\)[s]*\(\\:\/\/[0-9A-Za-z.]*\)\(\\:[0-9]*\)\{0,1\}/\1s\2\\:8443/' \
       "${CROWD_HOME}/crowd.properties"
 
     if [ $(grep 'crowd.base.url' "${CROWD_HOME}/crowd.properties") ]; then
@@ -120,14 +118,12 @@ fi
 
 # Fix crowd.server.url in crowd.properties
 #
-# We are always behind a reverse proxy when running in a container, so we need to restore
-# crowd.server.url to localhost:8080 or localhost:8443 (if ssl has been enabled). This value
-# is overwritten when changing the base_url via the UI.
+# We are always behind a reverse proxy when running in a container, so we need to restore crowd.server.url to
+# localhost:8080. This value is overwritten when changing the base_url via the UI.
 #
 if [ -f "${CROWD_HOME}/crowd.properties" ]; then
   sed --in-place \
     -e 's/\(crowd.server.url=http[^s]*\\:\/\/\)\([0-9A-Za-z.]*\)\(\\:[0-9]*\)\{0,1\}/\1localhost\\:8080/' \
-    -e 's/\(crowd.server.url=https\\:\/\/\)\([0-9A-Za-z.]*\)\(\\:[0-9]*\)\{0,1\}/\1localhost\\:8443/' \
     "${CROWD_HOME}/crowd.properties"
 fi
 
