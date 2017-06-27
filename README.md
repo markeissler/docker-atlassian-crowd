@@ -3,7 +3,7 @@
 __docker-atlassian-crowd__ provides [Atlassian Crowd](https://www.atlassian.com/software/crowd) in a [docker]()
 container to support centralized identity management.
 
->BETA: docker-atlassian-crowd is currently in pre-release. That doesn't mean it's not ready for production, it just 
+>BETA: docker-atlassian-crowd is currently in pre-release. That doesn't mean it's not ready for production, it just
 means it hasn't been tested by a large audience yet. The more the merrier and the faster we get to v1.0. Install it,
 open issues if you find bugs.
 
@@ -16,6 +16,9 @@ This application is ready to launch on a Docker host:
 ```sh
 prompt> docker run -d -p 8080:8080 -p 8443:8443 markeissler/atlassian-crowd:latest
 ```
+
+Following initial setup you must restart the container so that corrections are applied to the Crowd configuration when
+running in a Docker container.
 
 ## Usage
 
