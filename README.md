@@ -99,7 +99,7 @@ Crowd configuration information among replicated instances.
 
 ## Troubleshooting
 
-For general troubleshooting information check the [Troubleshoot](troubleshoot.md) document.
+For general troubleshooting information check the [Troubleshoot](Troubleshoot.md) document.
 
 ## Upstream Release Notes
 
