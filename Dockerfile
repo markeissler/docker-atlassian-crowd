@@ -3,6 +3,7 @@ MAINTAINER Mark Eissler
 
 # Setup useful environment variables
 ENV CROWD_HOME     /var/atlassian/crowd
+ENV CROWD_RUNTIME  /var/atlassian/crowd_runtime
 ENV CROWD_INSTALL  /opt/atlassian/crowd
 ENV CROWD_VERSION  2.11.2
 
@@ -44,6 +45,21 @@ RUN set -x \
     && echo -e                 "\ncrowd.home=$CROWD_HOME" >> "${CROWD_INSTALL}/crowd-webapp/WEB-INF/classes/crowd-init.properties" \
     && touch -d "@0"           "${CROWD_INSTALL}/apache-tomcat/conf/server.xml" \
     && chown daemon:daemon     "${JAVA_CACERTS}"
+
+# Support Swarm and NFS by moving caches to local (ephemeral) storage.
+#
+#   CROWD_HOME/caches/felix/felix-cache
+#       - felix plugin cache, we want to move just felix-cache but CROWD will overwrite
+#       a symlink on felix-cache so we move all felix to CROWD_RUNTIME
+#
+RUN set -x \
+    && mkdir -p                "${CROWD_HOME}/caches" \
+    && chmod -R 700            "${CROWD_HOME}" \
+    && chown -R daemon:daemon  "${CROWD_HOME}" \
+    && mkdir -p                "${CROWD_RUNTIME}/caches/felix" \
+    && chmod -R 700            "${CROWD_RUNTIME}" \
+    && chown -R daemon:daemon  "${CROWD_RUNTIME}" \
+    && ln -s                   "${CROWD_RUNTIME}/caches/felix" "${CROWD_HOME}/caches/felix"
 
 # Use the default unprivileged account. This could be considered bad practice
 # on systems where multiple processes end up being executed by 'daemon' but
