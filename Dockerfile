@@ -5,7 +5,7 @@ MAINTAINER Mark Eissler
 ENV CROWD_HOME     /var/atlassian/crowd
 ENV CROWD_RUNTIME  /var/atlassian/crowd_runtime
 ENV CROWD_INSTALL  /opt/atlassian/crowd
-ENV CROWD_VERSION  2.11.2
+ENV CROWD_VERSION  2.12.0
 
 ENV JAVA_CACERTS  $JAVA_HOME/jre/lib/security/cacerts
 ENV CERTIFICATE   $CROWD_HOME/certificate
