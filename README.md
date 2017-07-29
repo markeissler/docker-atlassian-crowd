@@ -11,7 +11,7 @@ open issues if you find bugs.
 
 This revision of __docker-atlassian-crowd__ will install:
 
-[Crowd 2.11.2](https://confluence.atlassian.com/crowd/crowd-2-11-release-notes-867183140.html)
+[Crowd 2.12.0](https://confluence.atlassian.com/crowd/crowd-2-12-release-notes-890940285.html)
 
 ## Installation
 
