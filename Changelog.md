@@ -1,6 +1,21 @@
 # Changelog: docker-atlassian-crowd
 
-## 0.10.0 / 2017/06/27
+## 0.11.0 / 2017-07-29
+
+Update Crowd to 2.12.0.
+
+### Minor version increment!
+
+Since this is a Minor version increment be sure to review the release notes and upgrade notes:
+
+  * [Crowd 2.12 release notes](https://confluence.atlassian.com/crowd/crowd-2-12-release-notes-890940285.html)
+  * [Crowd 2.12 upgrade notes](https://confluence.atlassian.com/crowd/crowd-2-12-upgrade-notes-890940295.html)
+
+### Short list of commit messages
+
+  * Update Crowd to 2.12.0.
+
+## 0.10.0 / 2017-06-27
 
 Docker Swarm support! This version adds support for deployment to a cluster with a failover configuration. That is, only
 one instance can be active at a time but the failover instance should startup without encountering errors stemming from
